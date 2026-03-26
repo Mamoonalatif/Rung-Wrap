@@ -133,11 +133,11 @@ function App() {
                 aria-hidden={i !== carouselIndex}
               >
                 {item.image && (
-                  <div className="carousel-image-container">
-                    <img src={item.image} alt="" className="carousel-image" />
-                  </div>
+                  <img src={item.image} alt="" className="carousel-image" />
                 )}
-                <p className="carousel-text">{item.text}</p>
+                <div className="carousel-overlay">
+                  <p className="carousel-text">{item.text}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -228,11 +228,11 @@ function App() {
             <a href="mailto:rungandwrap@gmail.com">rungandwrap@gmail.com</a>
           </div>
           <div className="footer-section">
-            <h4>Follow Us</h4>
+            <h4>Connect</h4>
             <div className="footer-socials">
-              <a href="https://www.instagram.com/rungandwrap?igsh=MXY0dWx0cG50dmZwbw==" target="_blank" rel="noreferrer">Instagram</a>
-              <a href="https://www.facebook.com/share/1MyjN4ia86/" target="_blank" rel="noreferrer">Facebook</a>
-              <a href="https://pin.it/3YlMIYewZ" target="_blank" rel="noreferrer">Pinterest</a>
+              <a href="https://www.facebook.com/share/1MyjN4ia86/" target="_blank" rel="noreferrer" title="Facebook" className="social-link fb">f</a>
+              <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" title="LinkedIn" className="social-link linkedin">in</a>
+              <a href="https://pin.it/3YlMIYewZ" target="_blank" rel="noreferrer" title="Pinterest" className="social-link pin">P</a>
             </div>
           </div>
         </div>
