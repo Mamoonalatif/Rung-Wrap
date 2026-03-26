@@ -1,6 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
 import logo from './assets/logo.png'
 import './App.css'
+import  facebook from './assets/facebook.png'
+import instagram from './assets/insta.jpg'
+import pinterest from './assets/pinterest.png'
 
 const previewSections = [
   'Home',
@@ -13,10 +16,10 @@ const previewSections = [
 ]
 
 const announcements = [
-  { text: 'Welcome to Rung & Wrap – where celebrations come to life', image: 'https://images.unsplash.com/photo-1519671482677-662481bca042?w=400&h=300&fit=crop' },
-  { text: 'Discover elegant wedding invitations and custom event stationery', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=300&fit=crop' },
-  { text: 'Transform your celebrations with luxury gift boxes and Eid baskets', image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop' },
-  { text: 'Personalized service for every milestone and special moment', image: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=400&h=300&fit=crop' },
+  { text: 'Welcome to Rung & Wrap – where celebrations come to life', image: 'https://images.unsplash.com/photo-1519671482677-662481bca042?w=1200&h=720&fit=crop&crop=faces' },
+  { text: 'Discover elegant wedding invitations and custom event stationery', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=1200&h=720&fit=crop' },
+  { text: 'Transform your celebrations with luxury gift boxes and Eid baskets', image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&h=720&fit=crop' },
+  { text: 'Personalized service for every milestone and special moment', image: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=1200&h=720&fit=crop' },
 ]
 
 function App() {
@@ -24,6 +27,8 @@ function App() {
   const [status, setStatus] = useState('')
   const [activeSection, setActiveSection] = useState('')
   const [carouselIndex, setCarouselIndex] = useState(0)
+
+  const [showThankYou, setShowThankYou] = useState(false)
 
   const floatingIcons = useMemo(
     () => ['✦', '◎', '◍', '✧', '◌', '◉', '✶', '◘'],
@@ -68,6 +73,8 @@ function App() {
       }
       setStatus('✓ You are on our launch list!')
       setEmail('')
+      setShowThankYou(true)
+      setTimeout(() => setShowThankYou(false), 4000)
     } catch {
       setStatus('Could not save right now. Please try again.')
     }
@@ -80,7 +87,6 @@ function App() {
         <div className="navbar-container">
           <div className="navbar-brand">
             <img src={logo} alt="Rung & Wrap" className="navbar-logo" />
-            <span className="brand-text">Rung & Wrap</span>
           </div>
           <ul className="navbar-links">
             {previewSections.map((section) => (
@@ -96,9 +102,16 @@ function App() {
             ))}
           </ul>
           <div className="navbar-socials">
-            <a href="https://www.facebook.com/share/1MyjN4ia86/" target="_blank" rel="noreferrer" title="Facebook" className="social-icon fb">f</a>
-            <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" title="LinkedIn" className="social-icon linkedin">in</a>
-            <a href="https://pin.it/3YlMIYewZ" target="_blank" rel="noreferrer" title="Pinterest" className="social-icon pin">P</a>
+            <a href="https://www.instagram.com/rungandwrap?igsh=MXY0dWx0cG50dmZwbw==" target="_blank" rel="noreferrer" title="Instagram" className="social-icon ig">
+              <img src={instagram} alt="Instagram" className="social-icon-img" />
+            </a>
+            <a href="https://www.facebook.com/share/1MyjN4ia86/" target="_blank" rel="noreferrer" title="Facebook" className="social-icon fb">
+              <img src={facebook} alt="Facebook" className="social-icon-img" />
+            </a>
+            <a href="https://pin.it/3YlMIYewZ" target="_blank" rel="noreferrer" title="Pinterest" className="social-icon pin">
+              <img src={pinterest} alt="Pinterest" className="social-icon-img" />
+            </a>
+
           </div>
         </div>
       </nav>
@@ -221,23 +234,42 @@ function App() {
         <div className="footer-content">
           <div className="footer-section">
             <h4>Rung & Wrap</h4>
-            <p>Elegant event details and luxury gifting since 2024</p>
+            <p>&copy; 2025 All Rights Reserved</p>
           </div>
           <div className="footer-section">
-            <h4>Contact</h4>
+            <h4>Contact Us</h4>
             <a href="mailto:rungandwrap@gmail.com">rungandwrap@gmail.com</a>
           </div>
-          <div className="footer-section">
-            <h4>Connect</h4>
-            <div className="footer-socials">
-              <a href="https://www.facebook.com/share/1MyjN4ia86/" target="_blank" rel="noreferrer" title="Facebook" className="social-link fb">f</a>
-              <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" title="LinkedIn" className="social-link linkedin">in</a>
-              <a href="https://pin.it/3YlMIYewZ" target="_blank" rel="noreferrer" title="Pinterest" className="social-link pin">P</a>
-            </div>
-          </div>
         </div>
-        <p className="footer-credit">Crafted with love for celebrations.</p>
+        <div className="footer-socials-bar">
+          <a href="https://www.instagram.com/rungandwrap?igsh=MXY0dWx0cG50dmZwbw==" target="_blank" rel="noreferrer" title="Instagram" className="social-footer-icon">
+            <img src={instagram} alt="Instagram" className="social-icon-img" />
+          </a>
+          <a href="https://www.facebook.com/share/1MyjN4ia86/" target="_blank" rel="noreferrer" title="Facebook" className="social-footer-icon">
+            <img src={facebook} alt="Facebook" className="social-icon-img" />
+          </a>
+          <a href="https://pin.it/3YlMIYewZ" target="_blank" rel="noreferrer" title="Pinterest" className="social-footer-icon">
+            <img src={pinterest} alt="Pinterest" className="social-icon-img" />
+          </a>
+        </div>
       </footer>
+
+      {/* Thank You Modal */}
+      {showThankYou ? (
+        <section className="thank-you-overlay" aria-live="polite">
+          <div className="thank-you-card">
+            <div className="thank-you-logo-container">
+              <img src={logo} alt="Rung & Wrap" className="thank-you-logo" />
+            </div>
+            <h3>Thank You!</h3>
+            <p>We're Thrilled You're Joining Us</p>
+            <p className="thank-you-message">Check your inbox for exclusive updates about our launch.</p>
+            <button type="button" onClick={() => setShowThankYou(false)} className="thank-you-close">
+              Continue
+            </button>
+          </div>
+        </section>
+      ) : null}
 
       {/* Section Overlay */}
       {activeSection ? (
