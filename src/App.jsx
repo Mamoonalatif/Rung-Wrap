@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import logo from './assets/logo.png'
 import './App.css'
-import  facebook from './assets/facebook.png'
+import facebook from './assets/facebook.png'
 import instagram from './assets/insta.jpg'
 import pinterest from './assets/pinterest.png'
+import ThankYou from './ThankYou'
 
 const previewSections = [
   'Home',
@@ -23,6 +25,7 @@ const announcements = [
 ]
 
 function App() {
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState('')
   const [activeSection, setActiveSection] = useState('')
@@ -73,12 +76,22 @@ function App() {
       }
       setStatus('✓ You are on our launch list!')
       setEmail('')
-      setShowThankYou(true)
-      setTimeout(() => setShowThankYou(false), 4000)
+      navigate('/thankyou')
     } catch {
       setStatus('Could not save right now. Please try again.')
     }
   }
+
+  return (
+    <Routes>
+      <Route path="/thankyou" element={<ThankYou />} />
+      <Route path="/" element={<HomePage email={email} setEmail={setEmail} status={status} activeSection={activeSection} setActiveSection={setActiveSection} carouselIndex={carouselIndex} handleNotifySubmit={handleNotifySubmit} floatingIcons={floatingIcons} featuredServices={featuredServices} showThankYou={showThankYou} setShowThankYou={setShowThankYou} logo={logo} facebook={facebook} instagram={instagram} pinterest={pinterest} previewSections={previewSections} />} />
+    </Routes>
+  )
+}
+
+function HomePage({ email, setEmail, status, activeSection, setActiveSection, carouselIndex, handleNotifySubmit, floatingIcons, featuredServices, showThankYou, setShowThankYou, logo, facebook, instagram, pinterest, previewSections }) {
+  const navigate = useNavigate()
 
   return (
     <div className="app-wrapper">
@@ -111,7 +124,7 @@ function App() {
             <a href="https://pin.it/3YlMIYewZ" target="_blank" rel="noreferrer" title="Pinterest" className="social-icon pin">
               <img src={pinterest} alt="Pinterest" className="social-icon-img" />
             </a>
-
+    
           </div>
         </div>
       </nav>
@@ -136,33 +149,19 @@ function App() {
           <p className="banner-subtitle">Something extraordinary is on the way...</p>
         </section>
 
-        {/* Announcement Carousel */}
-        <section className="announcement-carousel">
-          <div className="carousel-wrapper">
-            {announcements.map((item, i) => (
-              <div
-                key={i}
-                className={`carousel-slide ${i === carouselIndex ? 'active' : ''}`}
-                aria-hidden={i !== carouselIndex}
-              >
-                {item.image && (
-                  <img src={item.image} alt="" className="carousel-image" />
-                )}
-                <div className="carousel-overlay">
-                  <p className="carousel-text">{item.text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="carousel-dots">
-            {announcements.map((_, i) => (
-              <button
-                key={i}
-                className={`dot ${i === carouselIndex ? 'active' : ''}`}
-                onClick={() => setCarouselIndex(i)}
-                aria-label={`Go to slide ${i + 1}`}
-              />
-            ))}
+        {/* Gift Box Animation */}
+        <section className="gift-box-animation">
+          <div className="gift-box-container">
+            <div className="gift-box">
+              <div className="gift-box-lid"></div>
+              <div className="gift-box-body"></div>
+              <div className="gift-box-ribbon-horizontal"></div>
+              <div className="gift-box-ribbon-vertical"></div>
+              <div className="gift-box-bow"></div>
+            </div>
+            <div className="coming-soon-popup">
+              <p>Coming Soon</p>
+            </div>
           </div>
         </section>
 
@@ -196,35 +195,7 @@ function App() {
           </a>
         </section>
 
-        {/* Featured Services */}
-        <section className="showcase" aria-label="Featured services preview">
-          <h2>Signature Services</h2>
-          <div className="marquee-track">
-            {[...featuredServices, ...featuredServices].map((service, index) => (
-              <div className="service-pill" key={`${service}-${index}`}>
-                <span>✦</span>
-                {service}
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Newsletter */}
-        <section className="newsletter" aria-label="Newsletter subscription">
-          <h2>Get notified when we launch</h2>
-          <form className="newsletter-form" onSubmit={handleNotifySubmit}>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              required
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              className="newsletter-input"
-            />
-            <button type="submit" className="newsletter-btn">Notify Me</button>
-          </form>
-          {status ? <p className="form-status">{status}</p> : null}
-        </section>
+  
 
 
       </main>
@@ -241,35 +212,8 @@ function App() {
             <a href="mailto:rungandwrap@gmail.com">rungandwrap@gmail.com</a>
           </div>
         </div>
-        <div className="footer-socials-bar">
-          <a href="https://www.instagram.com/rungandwrap?igsh=MXY0dWx0cG50dmZwbw==" target="_blank" rel="noreferrer" title="Instagram" className="social-footer-icon">
-            <img src={instagram} alt="Instagram" className="social-icon-img" />
-          </a>
-          <a href="https://www.facebook.com/share/1MyjN4ia86/" target="_blank" rel="noreferrer" title="Facebook" className="social-footer-icon">
-            <img src={facebook} alt="Facebook" className="social-icon-img" />
-          </a>
-          <a href="https://pin.it/3YlMIYewZ" target="_blank" rel="noreferrer" title="Pinterest" className="social-footer-icon">
-            <img src={pinterest} alt="Pinterest" className="social-icon-img" />
-          </a>
-        </div>
-      </footer>
 
-      {/* Thank You Modal */}
-      {showThankYou ? (
-        <section className="thank-you-overlay" aria-live="polite">
-          <div className="thank-you-card">
-            <div className="thank-you-logo-container">
-              <img src={logo} alt="Rung & Wrap" className="thank-you-logo" />
-            </div>
-            <h3>Thank You!</h3>
-            <p>We're Thrilled You're Joining Us</p>
-            <p className="thank-you-message">Check your inbox for exclusive updates about our launch.</p>
-            <button type="button" onClick={() => setShowThankYou(false)} className="thank-you-close">
-              Continue
-            </button>
-          </div>
-        </section>
-      ) : null}
+      </footer>
 
       {/* Section Overlay */}
       {activeSection ? (
