@@ -15,6 +15,7 @@
   --font-body: 'Mulish', sans-serif;
 
   font-family: var(--font-body);
+  font-weight: 500;
   color: var(--text-main);
   background-color: var(--cream);
   font-synthesis: none;
