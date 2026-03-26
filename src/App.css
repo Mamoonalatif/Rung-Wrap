@@ -98,9 +98,21 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.navbar-socials a.fb {
+  background: #1877f2;
+}
+
+.navbar-socials a.linkedin {
+  background: #0a66c2;
+}
+
+.navbar-socials a.pin {
+  background: #e60023;
+}
+
 .navbar-socials a:hover {
   transform: scale(1.1) translateY(-2px);
-  box-shadow: 0 6px 16px rgba(184, 145, 96, 0.3);
+  box-shadow: 0 6px 16px rgba(66, 66, 66, 0.3);
 }
 
 @media (max-width: 900px) {

@@ -6,10 +6,7 @@ const previewSections = [
   'Home',
   'Invitations',
   'Gift Boxes',
-  'Goodie Bags',
   'Eid Baskets',
-  'Event Details',
-  'Gallery',
   'Custom Orders',
   'About Us',
   'Contact',
@@ -99,8 +96,8 @@ function App() {
             ))}
           </ul>
           <div className="navbar-socials">
-            <a href="https://www.instagram.com/rungandwrap?igsh=MXY0dWx0cG50dmZwbw==" target="_blank" rel="noreferrer" title="Instagram" className="social-icon ig">f</a>
             <a href="https://www.facebook.com/share/1MyjN4ia86/" target="_blank" rel="noreferrer" title="Facebook" className="social-icon fb">f</a>
+            <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" title="LinkedIn" className="social-icon linkedin">in</a>
             <a href="https://pin.it/3YlMIYewZ" target="_blank" rel="noreferrer" title="Pinterest" className="social-icon pin">P</a>
           </div>
         </div>
